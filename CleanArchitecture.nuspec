@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+
+    <id>CleanArchitecture.Template</id>
+    <version>0.0.0</version>
+    <title>Clean Architecture Solution Template</title>
+    <authors>Evangelos Vlachos</authors>
+    <description>A Clean Architecture Solution Template supporting Angular, React, and Web API-only apps built with ASP.NET Core and Aspire.</description>
+    <summary>
+      A Clean Architecture Solution Template supporting Angular, React, and Web API-only apps built with ASP.NET Core and Aspire.
+    </summary>
+    <releaseNotes></releaseNotes>
+
+    <projectUrl>https://github.com/evangelosvlachos96-dotcom/clean-architecture-template</projectUrl>
+    <repository type="git" url="https://github.com/evangelosvlachos96-dotcom/clean-architecture-template.git" branch="main" />
+
+    <tags>clean-architecture project template csharp dotnet angular react webapi aspire</tags>
+    <icon>icon.png</icon>
+    <readme>README.md</readme>
+
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+
+  </metadata>
+
+  <files>
+    <file src=".template.config\icon.png" />
+    <file src="README.md" />
+    <file src=".\**" target="content" exclude="**\node_modules\**;**\tools\**;**\bin\**;**\obj\**;.\.vs\**;.\.vscode\**;**\ClientApp\dist\**;**\ClientApp\.angular\**;**\wwwroot\dist\**;content\Directory.Build.*;.\.git\**;.\.github\workflows\jekyll-gh-pages.yml;.\.github\workflows\release.yml;.\.github\workflows\codeql.yml;.\.github\workflows\build.yml;.\.github\ISSUE_TEMPLATE\**;.\.github\icon.png;.\README.md;.\CleanArchitecture.nuspec;.\src\Web\app.db;.\renovate.json;.\build\**;.\.github\workflows\test-templates.yml;.\artifacts\**;" />
+  </files>
+
+</package>

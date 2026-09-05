@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Evangelos Vlachos",
+  "classifications": [
+    "Clean Architecture"
+  ],
+  "name": "Clean Architecture Solution Use Case",
+  "description":  "Create a new use case (query or command)",
+  "identity": "Clean.Architecture.Solution.UseCase.CSharp",
+  "groupIdentity": "Clean.Architecture.Solution.UseCase",
+  "shortName": "ca-usecase",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "CleanArchitectureUseCase",
+  "preferNameDirectory": false,
+  "symbols": {
+    "RootNamespace": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace",
+      "defaultValue": "CleanArchitecture.Application"
+    },
+    "parentNamespace": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "description": "Parent namespace when creating use case in a subfolder (e.g., 'Accounting' when in src/Application/Accounting)",
+      "defaultValue": ""
+    },
+    "featureName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": true,
+      "fileRename": "FeatureName"
+    },
+    "ComputedNamespaceWithFeature": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "RootNamespace" },
+          { "type": "ref", "value": "parentNamespace" },
+          { "type": "ref", "value": "featureName" }
+        ],
+        "separator": ".",
+        "removeEmptyValues": true
+      },
+      "replaces": "CleanArchitecture.Application.FeatureName"
+    },
+    "useCaseType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "choices": [
+        {
+          "choice": "command",
+          "description": "Create a new command"
+        },
+        {
+          "choice": "query",
+          "description": "Create a new query"
+        }
+      ],
+      "description": "The type of use case to create"
+    },
+    "createCommand": {
+      "type": "computed",
+      "value": "(useCaseType == \"command\")"
+    },
+    "createQuery": {
+      "type": "computed",
+      "value": "(useCaseType == \"query\")"
+    },
+    "returnType": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "replaces": "TReturnType",
+      "defaultValue": ""
+    },
+    "hasReturnType": {
+      "type": "computed",
+      "value": "(returnType != \"\")"
+    },
+    "CommonInterfacesNamespace": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "RootNamespace" },
+          { "type": "const", "value": "Common.Interfaces" }
+        ],
+        "separator": "."
+      },
+      "replaces": "CleanArchitecture.Application.Common.Interfaces"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(createCommand)",
+          "exclude": [ "FeatureName/Queries/**/*" ]
+        },
+        {
+          "condition": "(createQuery)",
+          "exclude": [ "FeatureName/Commands/**/*" ]
+        }
+      ]
+    }
+  ]
+}

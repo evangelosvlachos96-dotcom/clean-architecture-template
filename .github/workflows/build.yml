@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '.scripts/**'
+      - .gitignore
+      - README.md
+
+  workflow_call:
+    inputs:
+      build-artifacts:
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+      name: Checkout code
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v6
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/Directory.Packages.props', '**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    #if (!UseApiOnly)
+    - name: Install Node & cache npm packages
+      uses: actions/setup-node@v7
+      with:
+        node-version: '24.x'
+        cache: 'npm'
+        cache-dependency-path: |
+          src/Web/ClientApp/package-lock.json
+          src/Web/ClientApp-React/package-lock.json
+    #endif
+
+    - name: Install .NET
+      uses: actions/setup-dotnet@v6
+
+    - name: Restore solution
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --no-restore --configuration Release
+      
+    #if (!UseApiOnly)
+    - name: Install Playwright browsers
+      run: pwsh artifacts/bin/Web.AcceptanceTests/release/playwright.ps1 install --with-deps chromium
+    #endif
+
+    - name: Test solution
+      run: dotnet test --no-build --configuration Release

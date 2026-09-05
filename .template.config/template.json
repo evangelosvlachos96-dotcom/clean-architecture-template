@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "Evangelos Vlachos",
+  "classifications": [
+    "Angular",
+    "API",
+    "Aspire",
+    "Clean Architecture",
+    "Cloud",
+    "NUnit",
+    "Playwright",
+    "React",
+    "Test",
+    "Web",
+    "Web API"],
+  "name": "Clean Architecture Solution",
+  "description": "A Clean Architecture Solution Template supporting Angular, React, and Web API-only apps built with ASP.NET Core and Aspire.",
+  "identity": "Clean.Architecture.Solution.CSharp",
+  "groupIdentity": "Clean.Architecture.Solution",
+  "shortName": "ca-sln",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "CleanArchitecture",
+  "preferNameDirectory": true,
+  "symbols": {
+    "kestrelHttpPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the HTTP endpoint in launchSettings.json."
+    },
+    "kestrelHttpPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 5000,
+        "high": 5300
+      }
+    },
+    "kestrelHttpPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "kestrelHttpPort",
+        "fallbackVariableName": "kestrelHttpPortGenerated"
+      },
+      "replaces": "5000"
+    },
+    "kestrelHttpsPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the HTTPS endpoint in launchSettings.json."
+    },
+    "kestrelHttpsPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 7000,
+        "high": 7300
+      }
+    },
+    "kestrelHttpsPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "kestrelHttpsPort",
+        "fallbackVariableName": "kestrelHttpsPortGenerated"
+      },
+      "replaces": "5001"
+    },
+    "appHostHttpPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the HTTP endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostHttpPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 15000,
+        "high": 15300
+      }
+    },
+    "appHostHttpPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostHttpPort",
+        "fallbackVariableName": "appHostHttpPortGenerated"
+      },
+      "replaces": "15000"
+    },
+    "appHostHttpsPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the HTTPS endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostHttpsPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 17000,
+        "high": 17300
+      }
+    },
+    "appHostHttpsPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostHttpsPort",
+        "fallbackVariableName": "appHostHttpsPortGenerated"
+      },
+      "replaces": "17000"
+    },
+    "appHostOtlpHttpPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the OTLP HTTP endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostOtlpHttpPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 19000,
+        "high": 19300
+      }
+    },
+    "appHostOtlpHttpPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostOtlpHttpPort",
+        "fallbackVariableName": "appHostOtlpHttpPortGenerated"
+      },
+      "replaces": "19000"
+    },
+    "appHostOtlpHttpsPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the OTLP HTTPS endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostOtlpHttpsPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 21000,
+        "high": 21300
+      }
+    },
+    "appHostOtlpHttpsPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostOtlpHttpsPort",
+        "fallbackVariableName": "appHostOtlpHttpsPortGenerated"
+      },
+      "replaces": "21000"
+    },
+    "appHostResourceHttpPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the resource service HTTP endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostResourceHttpPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 20000,
+        "high": 20300
+      }
+    },
+    "appHostResourceHttpPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostResourceHttpPort",
+        "fallbackVariableName": "appHostResourceHttpPortGenerated"
+      },
+      "replaces": "20000"
+    },
+    "appHostResourceHttpsPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "Port number to use for the resource service HTTPS endpoint in launchSettings.json of the AppHost project."
+    },
+    "appHostResourceHttpsPortGenerated": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 22000,
+        "high": 22300
+      }
+    },
+    "appHostResourceHttpsPortReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "appHostResourceHttpsPort",
+        "fallbackVariableName": "appHostResourceHttpsPortGenerated"
+      },
+      "replaces": "22000"
+    },
+    "caPackageVersion": {
+      "type": "generated",
+      "generator": "constant",
+      "replaces": "caPackageVersion",
+      "parameters": {
+        "value": "0.0.0"
+      }
+    },
+    "caRepositoryUrl": {
+      "type": "generated",
+      "generator": "constant",
+      "replaces": "caRepositoryUrl",
+      "parameters": {
+        "value": "https://github.com/evangelosvlachos96-dotcom/clean-architecture-template"
+      }
+    },
+    "caDocsUrl": {
+      "type": "generated",
+      "generator": "constant",
+      "replaces": "caDocsUrl",
+      "parameters": {
+        "value": "https://github.com/evangelosvlachos96-dotcom/clean-architecture-template"
+      }
+    },
+    "ClientFramework": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Angular",
+          "description": "Use Angular"
+        },
+        {
+          "choice": "React",
+          "description": "Use React"
+        },
+        {
+          "choice": "None",
+          "description": "Web API only"
+        }
+      ],
+      "defaultValue": "Angular",
+      "description": "The type of client framework to use"
+    },
+    "UseAngular": {
+      "type": "computed",
+      "value": "(ClientFramework == \"Angular\")"
+    },
+    "UseReact": {
+      "type": "computed",
+      "value": "(ClientFramework == \"React\")"
+    },
+    "UseApiOnly": {
+      "type": "computed",
+      "value": "(ClientFramework == \"None\")"
+    },
+    "Database": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "postgresql",
+          "description": "PostgreSQL"
+        },
+        {
+          "choice": "sqlite",
+          "description": "SQLite"
+        },
+        {
+          "choice": "sqlserver",
+          "description": "SQL Server"
+        }
+      ],
+      "defaultValue": "sqlite",
+      "description": "The database type to use."
+    },
+    "UsePostgreSQL": {
+      "type": "computed",
+      "value": "(Database == \"postgresql\")"
+    },
+    "UseSqlite": {
+      "type": "computed",
+      "value": "(Database == \"sqlite\")"
+    },
+    "UseSqlServer": {
+      "type": "computed",
+      "value": "(Database == \"sqlserver\")"
+    }
+  },
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [
+        ".azure/**/*",
+        ".template.config/**/*",
+        "templates/**/*",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "*.nuspec",
+        "src/Web/appsettings.json",
+        "src/Web/appsettings.PostgreSQL.json",
+        "src/Web/appsettings.SQLite.json",
+        "src/Web/appsettings.SQLServer.json",
+        "tests/Application.FunctionalTests/PostgreSQLTestcontainersTestDatabase.cs",
+        "tests/Application.FunctionalTests/PostgreSQLTestDatabase.cs",
+        "tests/Application.FunctionalTests/SqliteTestDatabase.cs",
+        "tests/Application.FunctionalTests/SqlTestcontainersTestDatabase.cs",
+        "tests/Application.FunctionalTests/SqlTestDatabase.cs",
+        "tests/Application.FunctionalTests/appsettings.json",
+        "tests/Application.FunctionalTests/appsettings.PostgreSQL.json",
+        "tests/Application.FunctionalTests/appsettings.SQLServer.json"
+      ],
+      "rename": {
+        "README-template.md": "README.md"
+      },
+      "modifiers": [
+        {
+          "condition": "(!UseApiOnly)",
+          "exclude": [
+            "src/Web/Infrastructure/BearerSecuritySchemeTransformer.cs"
+          ]
+        },
+        {
+          "condition": "(UseAngular)",
+          "exclude": [
+            "src/Web/ClientApp-React/**",
+            "src/Web/Web-webapi.http"
+          ]
+        },
+        {
+          "condition": "(UseReact)",
+          "exclude": [
+            "src/Web/ClientApp/**",
+            "src/Web/Web-webapi.http"
+          ],
+          "rename": {
+            "ClientApp-React": "ClientApp"
+          }
+        },
+        {
+          "condition": "(UseApiOnly)",
+          "exclude": [
+            "src/Web/ClientApp/**",
+            "src/Web/ClientApp-React/**",
+            "src/Web/Pages/**",
+            "src/Web/Web.http",
+            "tests/Web.AcceptanceTests/**"
+          ],
+          "rename": {
+            "Web-webapi.http": "Web.http"
+          }
+        },
+        {
+          "condition": "(UsePostgreSQL)",
+          "include": [
+            "src/Web/appsettings.PostgreSQL.json",
+            "tests/Application.FunctionalTests/PostgreSQLTestcontainersTestDatabase.cs",
+            "tests/Application.FunctionalTests/PostgreSQLTestDatabase.cs",
+            "tests/Application.FunctionalTests/appsettings.PostgreSQL.json"
+          ],
+          "rename": {
+            "src/Web/appsettings.PostgreSQL.json": "src/Web/appsettings.json",
+            "tests/Application.FunctionalTests/appsettings.PostgreSQL.json": "tests/Application.FunctionalTests/appsettings.json"
+          }
+        },
+        {
+          "condition": "(UseSqlServer)",
+          "include": [
+            "src/Web/appsettings.SQLServer.json",
+            "tests/Application.FunctionalTests/SqlTestcontainersTestDatabase.cs",
+            "tests/Application.FunctionalTests/SqlTestDatabase.cs",
+            "tests/Application.FunctionalTests/appsettings.SQLServer.json"
+          ],
+          "rename": {
+            "src/Web/appsettings.SQLServer.json": "src/Web/appsettings.json",
+            "tests/Application.FunctionalTests/appsettings.SQLServer.json": "tests/Application.FunctionalTests/appsettings.json"
+          }
+        },
+        {
+          "condition": "(UseSqlite)",
+          "include": [
+            "src/Web/appsettings.SQLite.json",
+            "tests/Application.FunctionalTests/SqliteTestDatabase.cs"
+          ],
+          "rename": {
+            "src/Web/appsettings.SQLite.json": "src/Web/appsettings.json"
+          }
+        }
+      ]
+    }
+  ]
+}
